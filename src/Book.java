@@ -1,16 +1,16 @@
 
 public class Book{
 	private String title, author, description;
-	private boolean isInStock;
+	private int stock;
 	private float price;
 	public Book(){
 		
 	}
-	public Book(String title, String author, String desc, boolean stock, float val){
+	public Book(String title, String author, String desc, int stock, float val){
 		this.title = title;
 		this.author = author;
 		this.description = desc;
-		this.isInStock = stock;
+		this.stock = stock;
 		this.price = val;
 	}
 	public String getTitle(){
@@ -32,10 +32,16 @@ public class Book{
 		this.description = description;
 	}
 	public boolean isInStock(){
-		return isInStock;
+		if (stock > 0 )
+			return true;
+		else
+			return false;
 	}
-	public void setStock(boolean x){
-		isInStock = x;
+	public void setStock(int x){
+		stock = x;
+	}
+	public int getStock(){
+		return stock;
 	}
 	public float getPrice(){
 		return price;
@@ -45,5 +51,16 @@ public class Book{
 	}
 	public void getDisplayText(){
 		System.out.printf("Author: %s, Title: %s\nDescription:\n%s\n",author,title,description);
+	}
+	public float requestPricingOfBooks(int count){
+		float value = 0f;
+		if (stock < count){
+			value = price * stock;
+			System.out.printf("There are not enough books to fill the complete order, returning the price for the max of %s books instead\n", stock);
+		}
+		else{
+			value = price * count;
+		}
+		return value;
 	}
 }
