@@ -49,8 +49,8 @@ public class Book{
 	public void setPrice(float val){
 		price = val;
 	}
-	public void getDisplayText(){
-		System.out.printf("Author: %s, Title: %s\nDescription:\n%s\n",author,title,description);
+	public String getDisplayText(){
+		return "Author: " + author + ", Title: " + title + "\nDescription:\n" + description + "\n";
 	}
 	public float requestPricingOfBooks(int count){
 		float value = 0f;
